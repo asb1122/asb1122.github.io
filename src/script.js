@@ -1,14 +1,14 @@
 'use strict';
 
-var newsBar = document.getElementById('news-bar');
-var newsContainer = document.getElementById('news-wrapp');
+const newsBar = document.getElementById('news-bar');
+const newsContainer = document.getElementById('news-wrapp');
 const API_KEY = "cff4aa421fae4c30a27c064004dcedad";
 
 function getNewsSources() {
     fetch("https://newsapi.org/v2/sources?apiKey=" + API_KEY)
     .then(function(response) {
        response.json().then(function(data) {
-        for(var source of data.sources) {
+        for(let source of data.sources) {
             let sourcesLink = document.createElement('div');
             let sourceId = source.id;
             sourcesLink.setAttribute('id', sourceId);
@@ -34,13 +34,13 @@ function getNewsItems(sourceId) {
        response.json().then(function(data) {
         clearOldNews();
 
-        for(var news of data.articles) {            
+        for(let news of data.articles) {            
             let newsItem = document.createElement("div");
             let newsTitle = document.createElement("h3");
             let author = document.createElement("p");
             let newsContant = document.createElement("div");
-            var goToButton = document.createElement("a");
-            var urlLink = news.url;
+            let goToButton = document.createElement("a");
+            let urlLink = news.url;
 
             newsItem.setAttribute('id', 'news-item');
             newsItem.classList.add('news-item');
@@ -71,8 +71,8 @@ function getNewsItems(sourceId) {
 }
 
 function clearOldNews(){
-        var newsList = document.getElementsByClassName("news-item");
-        for(var i = newsList.length - 1; 0 <= i; i--){
+        const newsList = document.getElementsByClassName("news-item");
+        for(let i = newsList.length - 1; 0 <= i; i--){
             if(newsList[i] && newsList[i].parentElement){
                 newsList[i].parentElement.removeChild(newsList[i]);
             }
